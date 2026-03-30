@@ -2,6 +2,26 @@
 
 Sherlock is an MCP server over stdio that indexes JavaScript/TypeScript/Vue source code using tree-sitter and exposes tools for file discovery, symbol search, and references.
 
+## Download / installation
+
+Prebuilt binaries are published on **[GitHub Releases](https://github.com/SteelTrace/sherlock/releases)**.
+
+1. Open the latest release.
+2. Download the archive for your platform:
+   - **Linux (x86_64):** `sherlock-linux-x64.tar.gz`
+   - **macOS (Apple Silicon):** `sherlock-macos-arm64.tar.gz`
+   - **macOS (Intel):** `sherlock-macos-x64.tar.gz`
+3. Extract the archive. You will get a single executable named `sherlock`.
+4. Move it to a directory on your `PATH` (optional), or invoke it with a full path.
+
+```bash
+tar -xzf sherlock-macos-arm64.tar.gz
+chmod +x sherlock
+./sherlock --help
+```
+
+To build from source instead, see **Build** below.
+
 ## Features
 
 - Background indexing with file watcher
@@ -25,13 +45,13 @@ The server logs the workspace root and DB path to stderr and serves MCP over std
 
 ## MCP Config Example
 
-Example `mcp.json`:
+Example `mcp.json` (point `command` at the extracted release binary, or at `target/release/sherlock` after a local build):
 
 ```json
 {
   "mcpServers": {
     "sherlock": {
-      "command": "/path/to/target/release/sherlock",
+      "command": "/path/to/sherlock",
       "args": ["--root", "/path/to/workspace", "--paths", "relative"]
     }
   }
